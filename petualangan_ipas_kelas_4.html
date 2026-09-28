@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan IPAS Kelas 4 - Kurikulum Merdeka</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                        },
+                        accent: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            user-select: none;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Outfit', sans-serif;
+        }
+        .custom-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .btn-bounce {
+            transition: all 0.2s ease;
+        }
+        .btn-bounce:hover {
+            transform: translateY(-2px);
+        }
+        .btn-bounce:active {
+            transform: translateY(1px);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col justify-between">
+
+    <!-- Top Header -->
+    <header class="no-print bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-slate-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="goHome()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                    <i class="fa-solid fa-leaf text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading font-extrabold text-lg sm:text-xl text-slate-800 leading-tight">PETUALANGAN IPAS</h1>
+                    <p class="text-xs text-brand-600 font-semibold tracking-wide">KELAS 4 SD/MI - KURIKULUM MERDEKA</p>
+                </div>
+            </div>
+
+            <!-- Student Name Badge & Nav Controls -->
+            <div id="userHeaderBadge" class="hidden items-center gap-3">
+                <div class="bg-brand-50 border border-brand-200 px-3 py-1.5 rounded-full flex items-center gap-2">
+                    <i class="fa-solid fa-user-graduate text-brand-600"></i>
+                    <span id="displayStudentName" class="font-bold text-sm text-brand-800">Siswa</span>
+                </div>
+                <button onclick="toggleVoice()" id="btnVoiceToggle" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition" title="Mati/Nyalakan Suara Narasi">
+                    <i class="fa-solid fa-volume-high" id="voiceIcon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-1 w-full">
+
+        <!-- ================= HOME SCREEN ================= -->
+        <section id="screenHome" class="space-y-8 animate-fade-in">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-br from-brand-700 via-brand-600 to-teal-700 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-white pointer-events-none">
+                    <i class="fa-solid fa-earth-asia text-[260px]"></i>
+                </div>
+                <div class="max-w-2xl space-y-4 relative z-10">
+                    <span class="bg-white/20 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-brand-100 border border-white/20">
+                        <i class="fa-solid fa-star text-amber-300 mr-1"></i> Game Edukasi Interaktif
+                    </span>
+                    <h2 class="font-heading text-3xl sm:text-5xl font-extrabold leading-tight">
+                        Jelajahi Rahasia Alam & Sains Bersama!
+                    </h2>
+                    <p class="text-brand-100 text-sm sm:text-base leading-relaxed">
+                        Selamat datang di media pembelajaran IPAS Kelas 4. Pelajari materi seru bab 1-4 dan uji pemahamanmu melalui tantangan kuis interaktif!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Input Student Form Card -->
+            <div class="max-w-xl mx-auto custom-card p-6 sm:p-8 rounded-3xl shadow-lg border border-slate-100 text-center space-y-6">
+                <div class="space-y-2">
+                    <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3 shadow-inner">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-slate-800">Siap Memulai Petualangan?</h3>
+                    <p class="text-xs sm:text-sm text-slate-500">Masukkan namamu terlebih dahulu untuk memulai belajar atau kuis.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="inputStudentName" placeholder="Ketik Nama Lengkap Kamu..." class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition font-semibold text-center sm:text-left">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        <button onclick="startAction('materi')" class="btn-bounce w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-2xl shadow-lg shadow-brand-600/30 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-book-open text-lg"></i>
+                            <span>Baca Materi</span>
+                        </button>
+                        <button onclick="startAction('kuis')" class="btn-bounce w-full py-4 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow-lg shadow-amber-500/30 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-gamepad text-lg"></i>
+                            <span>Mulai Kuis</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MATERI SCREEN ================= -->
+        <section id="screenMateri" class="hidden space-y-6">
+            <!-- Top Controls -->
+            <div class="flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                <button onclick="goHome()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-semibold text-sm flex items-center gap-2 transition">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Kembali ke Beranda</span>
+                </button>
+                <button onclick="requestStartKuisFromMateri()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold text-sm shadow-md shadow-amber-500/20 flex items-center gap-2 transition">
+                    <i class="fa-solid fa-play"></i>
+                    <span id="lblBtnKuisMateri">Mulai Kuis Sekarang</span>
+                </button>
+            </div>
+
+            <!-- Chapter Tabs -->
+            <div class="flex overflow-x-auto gap-2 pb-2 scrollbar-none" id="materiTabs">
+                <button onclick="switchChapter(1)" id="tabBab1" class="px-5 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition flex items-center gap-2 bg-brand-600 text-white shadow-md">
+                    <i class="fa-solid fa-seedling"></i> Bab 1: Tumbuhan
+                </button>
+                <button onclick="switchChapter(2)" id="tabBab2" class="px-5 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100">
+                    <i class="fa-solid fa-flask"></i> Bab 2: Wujud Zat
+                </button>
+                <button onclick="switchChapter(3)" id="tabBab3" class="px-5 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100">
+                    <i class="fa-solid fa-magnet"></i> Bab 3: Gaya
+                </button>
+                <button onclick="switchChapter(4)" id="tabBab4" class="px-5 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100">
+                    <i class="fa-solid fa-bolt"></i> Bab 4: Energi
+                </button>
+            </div>
+
+            <!-- Chapter Content View Container -->
+            <div id="materiContent" class="space-y-6">
+                <!-- Content inserted dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- ================= KUIS SCREEN ================= -->
+        <section id="screenKuis" class="hidden space-y-6 max-w-3xl mx-auto">
+            <!-- Quiz Status Bar -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <button onclick="confirmLeaveQuiz()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl font-bold text-xs flex items-center gap-1.5" title="Buka Materi (Reset Kuis)">
+                        <i class="fa-solid fa-book-open text-brand-600"></i>
+                        <span>Buka Materi</span>
+                    </button>
+                    <span class="text-xs font-bold text-slate-400">|</span>
+                    <span id="quizProgress" class="font-heading font-extrabold text-brand-700 text-sm">Soal 1 / 15</span>
+                </div>
+
+                <!-- Lives / Heart indicator -->
+                <div class="flex items-center gap-1 bg-red-50 px-3 py-1.5 rounded-full border border-red-100">
+                    <span class="text-xs font-bold text-red-600 mr-1">Nyawa:</span>
+                    <div id="livesContainer" class="flex items-center gap-1 text-red-500 text-base">
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="custom-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 border border-slate-200">
+                <!-- Question Visual Canvas Container -->
+                <div class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3 flex items-center justify-center overflow-hidden min-h-[220px]">
+                    <canvas id="quizCanvas" width="500" height="240" class="max-w-full h-auto rounded-xl shadow-inner bg-white"></canvas>
+                </div>
+
+                <!-- Question Text -->
+                <div class="space-y-2">
+                    <span id="quizTopicBadge" class="bg-brand-100 text-brand-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                        Bab 1: Tumbuhan
+                    </span>
+                    <h3 id="quizQuestionText" class="font-heading font-bold text-lg sm:text-xl text-slate-800 leading-snug">
+                        Loading Pertanyaan...
+                    </h3>
+                </div>
+
+                <!-- Options Grid -->
+                <div id="quizOptionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <!-- Option Buttons inserted via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= HASIL KUIS SCREEN ================= -->
+        <section id="screenHasil" class="hidden space-y-6 max-w-2xl mx-auto text-center">
+            <div id="hasilCard" class="custom-card p-8 rounded-3xl shadow-xl border border-slate-200 space-y-6">
+                <!-- Header Icon Dynamic -->
+                <div id="hasilIconContainer" class="w-24 h-24 rounded-3xl flex items-center justify-center text-4xl mx-auto shadow-lg">
+                    <!-- Icon JS -->
+                </div>
+
+                <div class="space-y-2">
+                    <h2 id="hasilTitle" class="font-heading font-extrabold text-3xl text-slate-800">Hasil Evaluasi</h2>
+                    <p id="hasilSubtitle" class="text-slate-600 text-sm">Selamat telah menyelesaikan kuis IPAS Kelas 4!</p>
+                </div>
+
+                <!-- Score Board -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-400 block">NILAI AKHIR</span>
+                        <span id="hasilScore" class="font-heading text-4xl font-black text-brand-600">0</span>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-slate-400 block">KKM MINIMAL</span>
+                        <span class="font-heading text-4xl font-black text-slate-700">75</span>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1">
+                        <span class="text-xs font-semibold text-slate-400 block">STATUS</span>
+                        <span id="hasilStatus" class="font-heading text-xl font-bold text-emerald-600 mt-2 block">TUNTAS</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-4">
+                    <button id="btnCetakSertifikat" onclick="openCertificate()" class="btn-bounce flex-1 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold rounded-2xl shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-award text-lg"></i>
+                        <span>Lihat Sertifikat Digital</span>
+                    </button>
+                    <button onclick="goHome()" class="btn-bounce flex-1 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Kembali ke Beranda</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SERTIFIKAT SCREEN ================= -->
+        <section id="screenSertifikat" class="hidden space-y-6">
+            <div class="no-print flex justify-between items-center max-w-4xl mx-auto bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                <button onclick="switchScreen('screenHasil')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-semibold text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Kembali
+                </button>
+                <button onclick="window.print()" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-sm shadow-md shadow-brand-600/30 flex items-center gap-2">
+                    <i class="fa-solid fa-print"></i> Cetak / Simpan PDF
+                </button>
+            </div>
+
+            <!-- Certificate Frame -->
+            <div class="max-w-4xl mx-auto bg-white p-8 sm:p-12 rounded-3xl border-8 border-double border-amber-400 shadow-2xl relative overflow-hidden text-center space-y-8 my-4 print-only">
+                <!-- Decorative Corner Patterns -->
+                <div class="absolute top-4 left-4 text-amber-400 text-3xl"><i class="fa-solid fa-certificate"></i></div>
+                <div class="absolute top-4 right-4 text-amber-400 text-3xl"><i class="fa-solid fa-certificate"></i></div>
+                <div class="absolute bottom-4 left-4 text-amber-400 text-3xl"><i class="fa-solid fa-certificate"></i></div>
+                <div class="absolute bottom-4 right-4 text-amber-400 text-3xl"><i class="fa-solid fa-certificate"></i></div>
+
+                <!-- Certificate Header -->
+                <div class="space-y-2 pt-4">
+                    <div class="inline-block px-4 py-1 bg-amber-100 text-amber-800 rounded-full font-bold text-xs tracking-widest uppercase mb-2">
+                        SERTIFIKAT KELULUSAN EVALUASI
+                    </div>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-wide">PETUALANGAN IPAS KELAS 4</h2>
+                    <p class="text-xs sm:text-sm text-slate-500">Kurikulum Merdeka SD/MI - Kategori Tuntas Pembelajaran</p>
+                </div>
+
+                <div class="space-y-3 my-6">
+                    <p class="text-slate-600 text-sm italic">Diberikan secara terhormat kepada siswa:</p>
+                    <h1 id="certStudentName" class="font-heading text-3xl sm:text-5xl font-black text-brand-700 underline decoration-amber-400 decoration-4 underline-offset-8">
+                        NAMA SISWA
+                    </h1>
+                </div>
+
+                <p class="max-w-2xl mx-auto text-slate-600 text-sm leading-relaxed">
+                    Telah menyelesaikan Kuis Evaluasi Pembelajaran IPAS (Ilmu Pengetahuan Alam & Sosial) Kelas 4 dengan capaian nilai memenuhi Kriteria Ketuntasan Minimal (KKM 75).
+                </p>
+
+                <!-- Details Grid -->
+                <div class="max-w-md mx-auto grid grid-cols-2 gap-4 bg-amber-50/50 p-4 rounded-2xl border border-amber-200 text-center">
+                    <div>
+                        <span class="text-xs text-slate-500 block">NILAI AKHIR</span>
+                        <span id="certScore" class="font-heading text-3xl font-black text-brand-700">90</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-500 block">STATUS EVALUASI</span>
+                        <span class="font-heading text-lg font-extrabold text-emerald-600 mt-1 block">LULUS (TUNTAS)</span>
+                    </div>
+                </div>
+
+                <!-- Footer Signatures -->
+                <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-6 text-xs text-slate-500 border-t border-slate-200">
+                    <div class="text-center sm:text-left">
+                        <span class="block font-semibold">Tanggal Kelulusan:</span>
+                        <span id="certDate" class="text-slate-800 font-bold">22 September 2026</span>
+                    </div>
+                    
+                    <!-- Digital Stamp -->
+                    <div class="w-24 h-24 border-4 border-emerald-600 rounded-full flex flex-col items-center justify-center text-emerald-700 font-black rotate-[-12deg] bg-emerald-50/50 shadow-inner">
+                        <i class="fa-solid fa-stamp text-lg mb-0.5"></i>
+                        <span class="text-[9px] uppercase tracking-tighter">LULUS KKM</span>
+                        <span class="text-[8px] font-normal">75+</span>
+                    </div>
+
+                    <div class="text-center sm:text-right space-y-1">
+                        <span class="block font-semibold">Pengembang Media:</span>
+                        <span class="text-brand-800 font-bold block text-sm">Giga Inovation</span>
+                        <span class="text-slate-500 block">081329200985</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Modal Confirm -->
+    <div id="modalConfirm" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-6 text-center border border-slate-100">
+            <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mx-auto">
+                <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <div class="space-y-2">
+                <h3 class="font-heading font-bold text-xl text-slate-800">Konfirmasi Reset Kuis</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Membuka materi akan mengulang kuis dari soal nomor 1 agar kamu bisa berlatih kembali dari awal. Lanjutkan?
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="closeConfirmModal(false)" class="py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm">
+                    Batal
+                </button>
+                <button onclick="closeConfirmModal(true)" class="py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm shadow-md shadow-brand-600/30">
+                    Ya, Buka Materi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Footer -->
+    <footer class="no-print bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p>© PETUALANGAN IPAS KELAS 4 SD/MI - Kurikulum Merdeka</p>
+            <p class="font-semibold text-brand-700">Pengembang: Giga Inovation | 081329200985</p>
+        </div>
+    </footer>
+
+    <script>
+        /* ================= STATE MANAGEMENT ================= */
+        const APP_STATE = {
+            studentName: '',
+            currentScreen: 'screenHome',
+            currentChapter: 1,
+            quizIndex: 0,
+            score: 0,
+            lives: 3,
+            voiceEnabled: true,
+            confirmCallback: null
+        };
+
+        /* ================= AUDIO SYNTHESIZER (WEB AUDIO API) ================= */
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSFX(type) {
+            try {
+                initAudio();
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'correct') {
+                    // Chimes
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+                    osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.35);
+                    osc.start(now);
+                    osc.stop(now + 0.35);
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now); // A3
+                    osc.frequency.setValueAtTime(164.81, now + 0.15); // E3
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else if (type === 'gameover') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(300, now);
+                    osc.frequency.linearRampToValueAtTime(100, now + 0.6);
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.6);
+                    osc.start(now);
+                    osc.stop(now + 0.6);
+                } else if (type === 'fanfare') {
+                    const freqs = [523.25, 659.25, 783.99, 1046.50];
+                    freqs.forEach((f, i) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.type = 'triangle';
+                        o.frequency.setValueAtTime(f, now + (i * 0.1));
+                        g.gain.setValueAtTime(0.2, now + (i * 0.1));
+                        g.gain.linearRampToValueAtTime(0.01, now + (i * 0.1) + 0.25);
+                        o.start(now + (i * 0.1));
+                        o.stop(now + (i * 0.1) + 0.25);
+                    });
+                }
+            } catch (e) {
+                console.log('Audio Context error:', e);
+            }
+        }
+
+        /* ================= VOICE SPEECH (WEB SPEECH API) ================= */
+        function speakText(text) {
+            if (!APP_STATE.voiceEnabled || !('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel(); // stop active speech
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'id-ID';
+            utterance.rate = 1.0;
+            utterance.pitch = 1.0;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function toggleVoice() {
+            APP_STATE.voiceEnabled = !APP_STATE.voiceEnabled;
+            const icon = document.getElementById('voiceIcon');
+            if (APP_STATE.voiceEnabled) {
+                icon.className = 'fa-solid fa-volume-high text-brand-600';
+                speakText('Suara narasi diaktifkan');
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-slate-400';
+                window.speechSynthesis.cancel();
+            }
+        }
+
+        /* ================= NAVIGATION LOGIC ================= */
+        function switchScreen(screenId) {
+            ['screenHome', 'screenMateri', 'screenKuis', 'screenHasil', 'screenSertifikat'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(screenId).classList.remove('hidden');
+            APP_STATE.currentScreen = screenId;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goHome() {
+            playSFX('click');
+            switchScreen('screenHome');
+        }
+
+        function startAction(actionType) {
+            playSFX('click');
+            const nameInput = document.getElementById('inputStudentName').value.trim();
+            if (!nameInput) {
+                alert('Silakan masukkan nama kamu terlebih dahulu!');
+                return;
+            }
+            APP_STATE.studentName = nameInput;
+            document.getElementById('displayStudentName').innerText = nameInput;
+            document.getElementById('userHeaderBadge').classList.remove('hidden');
+            document.getElementById('userHeaderBadge').classList.add('flex');
+
+            if (actionType === 'materi') {
+                switchScreen('screenMateri');
+                renderChapterContent(1);
+                speakText(`Halo ${APP_STATE.studentName}, selamat belajar materi IPAS!`);
+            } else if (actionType === 'kuis') {
+                resetAndStartQuiz();
+            }
+        }
+
+        /* ================= DYNAMIC CANVAS ILLUSTRATION GENERATOR ================= */
+        function drawCanvasIllustration(canvasId, topicKey) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+
+            // Clear Background
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            // Draw based on key
+            if (topicKey === 'tumbuhan_bagian') {
+                // Ground
+                ctx.fillStyle = '#854d0e';
+                ctx.fillRect(0, h - 30, w, 30);
+
+                // Roots
+                ctx.strokeStyle = '#b45309';
+                ctx.beginPath();
+                ctx.moveTo(w/2, h - 30); ctx.lineTo(w/2 - 30, h - 5);
+                ctx.moveTo(w/2, h - 30); ctx.lineTo(w/2 + 25, h - 8);
+                ctx.moveTo(w/2, h - 30); ctx.lineTo(w/2, h - 2);
+                ctx.stroke();
+
+                // Stem
+                ctx.strokeStyle = '#15803d';
+                ctx.lineWidth = 10;
+                ctx.beginPath();
+                ctx.moveTo(w/2, h - 30); ctx.lineTo(w/2, 80);
+                ctx.stroke();
+
+                // Leaves
+                ctx.fillStyle = '#22c55e';
+                ctx.beginPath();
+                ctx.ellipse(w/2 - 45, 120, 35, 18, -0.5, 0, Math.PI * 2);
+                ctx.ellipse(w/2 + 45, 100, 35, 18, 0.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Flower
+                ctx.fillStyle = '#f59e0b';
+                for(let i=0; i<6; i++) {
+                    const ang = (i * Math.PI / 3);
+                    ctx.beginPath();
+                    ctx.arc(w/2 + Math.cos(ang)*22, 60 + Math.sin(ang)*22, 14, 0, Math.PI*2);
+                    ctx.fill();
+                }
+                ctx.fillStyle = '#ef4444';
+                ctx.beginPath(); ctx.arc(w/2, 60, 15, 0, Math.PI*2); ctx.fill();
+
+                // Text Labels
+                drawLabel(ctx, 'Bunga', w/2 + 60, 50);
+                drawLabel(ctx, 'Daun', w/2 + 90, 100);
+                drawLabel(ctx, 'Batang', w/2 - 90, 140);
+                drawLabel(ctx, 'Akar', w/2 + 60, h - 15);
+
+            } else if (topicKey === 'penyerbukan') {
+                // Flower
+                ctx.fillStyle = '#ec4899';
+                for(let i=0; i<5; i++) {
+                    const ang = (i * Math.PI / 2.5);
+                    ctx.beginPath(); ctx.arc(140 + Math.cos(ang)*35, 120 + Math.sin(ang)*35, 25, 0, Math.PI*2); ctx.fill();
+                }
+                ctx.fillStyle = '#facc15';
+                ctx.beginPath(); ctx.arc(140, 120, 25, 0, Math.PI*2); ctx.fill();
+
+                // Bee Body
+                const bx = 320, by = 100;
+                ctx.fillStyle = '#f59e0b';
+                ctx.beginPath(); ctx.ellipse(bx, by, 30, 20, 0, 0, Math.PI*2); ctx.fill();
+                // Bee Stripes
+                ctx.fillStyle = '#1e293b';
+                ctx.fillRect(bx - 10, by - 18, 8, 36);
+                ctx.fillRect(bx + 8, by - 18, 8, 36);
+                // Bee Wings
+                ctx.fillStyle = 'rgba(224, 242, 254, 0.8)';
+                ctx.beginPath(); ctx.ellipse(bx - 5, by - 25, 12, 22, -0.4, 0, Math.PI*2); ctx.fill();
+                ctx.beginPath(); ctx.ellipse(bx + 10, by - 25, 12, 22, 0.4, 0, Math.PI*2); ctx.fill();
+
+                // Pollen Dots
+                ctx.fillStyle = '#eab308';
+                for(let i=0; i<8; i++) {
+                    ctx.beginPath(); ctx.arc(200 + (i*12), 115 + (i%2*6), 3, 0, Math.PI*2); ctx.fill();
+                }
+
+                drawLabel(ctx, 'Bunga (Putik & Benang Sari)', 140, 200);
+                drawLabel(ctx, 'Lebah Membawa Serbuk Sari', 320, 160);
+
+            } else if (topicKey === 'fotosintesis') {
+                // Sun
+                ctx.fillStyle = '#f59e0b';
+                ctx.beginPath(); ctx.arc(70, 60, 30, 0, Math.PI*2); ctx.fill();
+
+                // Big Leaf
+                ctx.fillStyle = '#16a34a';
+                ctx.beginPath();
+                ctx.moveTo(150, 180);
+                ctx.quadraticCurveTo(280, 60, 420, 160);
+                ctx.quadraticCurveTo(280, 240, 150, 180);
+                ctx.fill();
+
+                // Arrow Sun -> Leaf
+                drawArrow(ctx, 100, 80, 220, 120, '#f59e0b', 'Cahaya Matahari');
+                // Arrow CO2 -> Leaf
+                drawArrow(ctx, 120, 210, 210, 180, '#64748b', 'Karbondioksida (CO2)');
+                // Arrow H2O -> Leaf
+                drawArrow(ctx, 180, 230, 240, 190, '#0284c7', 'Air (H2O)');
+                // Arrow Leaf -> O2
+                drawArrow(ctx, 350, 120, 430, 80, '#22c55e', 'Oksigen (O2)');
+                // Arrow Leaf -> Glukosa
+                drawArrow(ctx, 370, 170, 450, 210, '#d97706', 'Glukosa (Makanan)');
+
+            } else if (topicKey === 'wujud_zat') {
+                // 3 Containers: Padat, Cair, Gas
+                // 1. Padat (Ice Cube)
+                ctx.fillStyle = '#e2e8f0'; ctx.fillRect(40, 90, 100, 100);
+                ctx.fillStyle = '#38bdf8'; ctx.fillRect(65, 115, 50, 50);
+                drawLabel(ctx, 'PADAT (Es)', 90, 210);
+
+                // 2. Cair (Glass Water)
+                ctx.strokeStyle = '#94a3b8'; ctx.strokeRect(190, 90, 100, 100);
+                ctx.fillStyle = '#0284c7'; ctx.fillRect(192, 130, 96, 58);
+                drawLabel(ctx, 'CAIR (Air)', 240, 210);
+
+                // 3. Gas (Steam/Baloon)
+                ctx.fillStyle = '#f1f5f9'; ctx.strokeStyle = '#cbd5e1';
+                ctx.beginPath(); ctx.arc(390, 130, 40, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+                drawLabel(ctx, 'GAS (Uap/Udara)', 390, 210);
+
+            } else if (topicKey === 'gaya_otot') {
+                // Stick Figure Pushing Box
+                ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 4;
+                // Head
+                ctx.beginPath(); ctx.arc(150, 100, 18, 0, Math.PI*2); ctx.stroke();
+                // Body
+                ctx.beginPath(); ctx.moveTo(150, 118); ctx.lineTo(130, 170); ctx.stroke();
+                // Arms Pushing
+                ctx.beginPath(); ctx.moveTo(140, 135); ctx.lineTo(190, 130); ctx.stroke();
+                // Legs
+                ctx.beginPath(); ctx.moveTo(130, 170); ctx.lineTo(110, 210); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(130, 170); ctx.lineTo(150, 210); ctx.stroke();
+
+                // Heavy Box
+                ctx.fillStyle = '#d97706'; ctx.fillRect(190, 90, 110, 120);
+                ctx.strokeStyle = '#78350f'; ctx.strokeRect(190, 90, 110, 120);
+
+                drawArrow(ctx, 100, 70, 230, 70, '#ef4444', 'Gaya Otot (Dorongan)');
+                drawLabel(ctx, 'Mendorong Benda', 240, 225);
+
+            } else if (topicKey === 'gaya_gesek') {
+                // Tire on road
+                ctx.fillStyle = '#334155'; ctx.fillRect(20, 170, w - 40, 30); // Road
+                ctx.fillStyle = '#e2e8f0'; ctx.fillRect(20, 183, w - 40, 4); // Line
+
+                // Wheel
+                ctx.fillStyle = '#0f172a'; ctx.beginPath(); ctx.arc(w/2, 110, 60, 0, Math.PI*2); ctx.fill();
+                ctx.fillStyle = '#94a3b8'; ctx.beginPath(); ctx.arc(w/2, 110, 35, 0, Math.PI*2); ctx.fill();
+
+                // Arrows
+                drawArrow(ctx, w/2, 40, w/2 + 80, 40, '#22c55e', 'Arah Gerak');
+                drawArrow(ctx, w/2 + 20, 165, w/2 - 60, 165, '#ef4444', 'Gaya Gesek');
+
+            } else if (topicKey === 'gaya_magnet') {
+                // Magnet U
+                ctx.lineWidth = 25;
+                ctx.strokeStyle = '#ef4444'; // Red North
+                ctx.beginPath(); ctx.arc(180, 120, 50, Math.PI*0.5, Math.PI*1.5); ctx.stroke();
+                ctx.strokeStyle = '#3b82f6'; // Blue South
+                ctx.beginPath(); ctx.arc(180, 120, 50, Math.PI*1.5, Math.PI*0.5); ctx.stroke();
+
+                // Nails
+                ctx.fillStyle = '#64748b';
+                for(let i=0; i<5; i++) {
+                    ctx.fillRect(260 + (i*20), 100 + (i*10), 25, 6);
+                }
+
+                drawArrow(ctx, 320, 120, 240, 120, '#3b82f6', 'Gaya Tarik Magnet');
+                drawLabel(ctx, 'Magnet Menarik Benda Besi/Logam', w/2, 210);
+
+            } else if (topicKey === 'energi_transformasi') {
+                // Battery -> Wire -> Lamp
+                // Battery
+                ctx.fillStyle = '#f59e0b'; ctx.fillRect(60, 90, 80, 50);
+                ctx.fillStyle = '#1e293b'; ctx.fillRect(140, 105, 10, 20);
+                drawLabel(ctx, 'Energi Kimia', 100, 160);
+
+                // Wire
+                ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 4;
+                ctx.beginPath(); ctx.moveTo(140, 115); ctx.lineTo(340, 115); ctx.stroke();
+
+                // Light Bulb
+                ctx.fillStyle = '#fef08a'; ctx.beginPath(); ctx.arc(360, 115, 30, 0, Math.PI*2); ctx.fill();
+                ctx.strokeStyle = '#eab308'; ctx.stroke();
+                drawLabel(ctx, 'Energi Cahaya & Panas', 360, 160);
+
+                drawArrow(ctx, 160, 80, 310, 80, '#22c55e', 'Transformasi Energi Listrik');
+            } else {
+                // Default Fallback Visual
+                ctx.fillStyle = '#3b82f6';
+                ctx.beginPath(); ctx.arc(w/2, h/2 - 10, 50, 0, Math.PI*2); ctx.fill();
+                drawLabel(ctx, 'Ilustrasi Visual IPAS', w/2, h/2 + 60);
+            }
+        }
+
+        function drawLabel(ctx, text, x, y) {
+            ctx.font = 'bold 12px "Plus Jakarta Sans", sans-serif';
+            ctx.fillStyle = '#1e293b';
+            ctx.textAlign = 'center';
+            ctx.fillText(text, x, y);
+        }
+
+        function drawArrow(ctx, fromx, fromy, tox, toy, color, label) {
+            const headlen = 10;
+            const dx = tox - fromx;
+            const dy = toy - fromy;
+            const angle = Math.atan2(dy, dx);
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = 3;
+
+            ctx.beginPath();
+            ctx.moveTo(fromx, fromy);
+            ctx.lineTo(tox, toy);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(tox, toy);
+            ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
+            ctx.fill();
+
+            if (label) {
+                ctx.font = 'bold 11px "Plus Jakarta Sans", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(label, (fromx + tox)/2, ((fromy + toy)/2) - 8);
+            }
+        }
+
+        /* ================= MATERI DATA & RENDER ================= */
+        const MATERI_DATA = {
+            1: {
+                title: "Bab 1: Tumbuhan, Sumber Kehidupan di Bumi",
+                sections: [
+                    {
+                        title: "1. Bagian Tubuh Tumbuhan & Fungsinya",
+                        desc: "Tumbuhan memiliki bagian utama seperti akar (menyerap air & hara), batang (menyalurkan makanan), daun (tempat fotosintesis), dan bunga (alat perkembangbiakan).",
+                        key: "tumbuhan_bagian"
+                    },
+                    {
+                        title: "2. Penyerbukan & Perkembangbiakan",
+                        desc: "Penyerbukan terjadi ketika serbuk sari jatuh ke kepala putik. Serangga seperti lebah membantu memindahkan serbuk sari saat menghisap nektar bunga.",
+                        key: "penyerbukan"
+                    },
+                    {
+                        title: "3. Proses Fotosintesis",
+                        desc: "Fotosintesis adalah proses tumbuhan membuat makanannya sendiri menggunakan air (H2O), karbondioksida (CO2), dan bantuan cahaya matahari untuk menghasilkan oksigen (O2) dan glukosa.",
+                        key: "fotosintesis"
+                    }
+                ]
+            },
+            2: {
+                title: "Bab 2: Wujud Zat dan Perubahannya",
+                sections: [
+                    {
+                        title: "1. Tiga Wujud Zat (Padat, Cair, Gas)",
+                        desc: "Zat Padat memiliki bentuk dan volume tetap. Zat Cair memiliki volume tetap tetapi bentuknya mengikuti wadah. Zat Gas mengisi seluruh ruangan.",
+                        key: "wujud_zat"
+                    },
+                    {
+                        title: "2. Perubahan Wujud Zat",
+                        desc: "Perubahan wujud meliputi: Mencair (Padat -> Cair), Membeku (Cair -> Padat), Menguap (Cair -> Gas), Mengembun (Gas -> Cair), Menyublim, dan Mengkristal.",
+                        key: "wujud_zat"
+                    }
+                ]
+            },
+            3: {
+                title: "Bab 3: Gaya di Sekitar Kita",
+                sections: [
+                    {
+                        title: "1. Konsep Gaya & Gaya Otot",
+                        desc: "Gaya adalah tarikan atau dorongan. Gaya dapat mengubah bentuk, arah, atau kecepatan benda. Gaya otot dihasilkan oleh tenaga otot manusia atau hewan.",
+                        key: "gaya_otot"
+                    },
+                    {
+                        title: "2. Gaya Gesek & Gaya Magnet",
+                        desc: "Gaya gesek terjadi saat dua permukaan bersentuhan dan bersifat menghambat gerak. Gaya magnet adalah gaya tarik/tolak yang dihasilkan oleh magnet terhadap logam besi.",
+                        key: "gaya_gesek"
+                    }
+                ]
+            },
+            4: {
+                title: "Bab 4: Mengubah Bentuk Energi",
+                sections: [
+                    {
+                        title: "1. Transformasi Energi Kimia",
+                        desc: "Makanan dan baterai menyimpan Energi Kimia. Tubuh mengubah energi kimia makanan menjadi energi gerak. Baterai mengubah energi kimia menjadi listrik.",
+                        key: "energi_transformasi"
+                    },
+                    {
+                        title: "2. Transformasi Energi Listrik",
+                        desc: "Energi listrik dapat diubah menjadi energi panas (setrika/rice cooker), energi gerak (kipas angin/blender), serta energi cahaya dan bunyi (televisi).",
+                        key: "energi_transformasi"
+                    }
+                ]
+            }
+        };
+
+        function renderChapterContent(chapterNum) {
+            APP_STATE.currentChapter = chapterNum;
+
+            // Update Active Tab Styles
+            for(let i=1; i<=4; i++) {
+                const tab = document.getElementById(`tabBab${i}`);
+                if (i === chapterNum) {
+                    tab.className = "px-5 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition flex items-center gap-2 bg-brand-600 text-white shadow-md";
+                } else {
+                    tab.className = "px-5 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100";
+                }
+            }
+
+            const chapter = MATERI_DATA[chapterNum];
+            const container = document.getElementById('materiContent');
+            container.innerHTML = '';
+
+            chapter.sections.forEach((sec, idx) => {
+                const card = document.createElement('div');
+                card.className = "custom-card p-6 rounded-3xl shadow-md border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-6 items-center";
+
+                const canvasId = `materiCanvas_${chapterNum}_${idx}`;
+
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <span class="bg-brand-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase">Subbab ${idx+1}</span>
+                        <h3 class="font-heading font-bold text-xl text-slate-800">${sec.title}</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">${sec.desc}</p>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 flex justify-center">
+                        <canvas id="${canvasId}" width="400" height="220" class="max-w-full h-auto bg-white rounded-xl shadow-inner"></canvas>
+                    </div>
+                `;
+                container.appendChild(card);
+
+                // Draw canvas after inserted to DOM
+                setTimeout(() => {
+                    drawCanvasIllustration(canvasId, sec.key);
+                }, 50);
+            });
+        }
+
+        function switchChapter(num) {
+            playSFX('click');
+            renderChapterContent(num);
+        }
+
+        /* ================= QUIZ DATA & ENGINE ================= */
+        const QUIZ_QUESTIONS = [
+            {
+                topic: "Bab 1: Tumbuhan",
+                question: "Bagian tumbuhan yang berfungsi menyerap air dan zat hara dari dalam tanah adalah...",
+                options: ["Daun", "Akar", "Bunga", "Batang"],
+                correct: 1,
+                canvasKey: "tumbuhan_bagian"
+            },
+            {
+                topic: "Bab 1: Tumbuhan",
+                question: "Proses pembuatan makanan pada tumbuhan hijau dengan bantuan cahaya matahari disebut...",
+                options: ["Fotosintesis", "Penyerbukan", "Pernapasan", "Penguapan"],
+                correct: 0,
+                canvasKey: "fotosintesis"
+            },
+            {
+                topic: "Bab 1: Tumbuhan",
+                question: "Serangga seperti lebah membantu tumbuhan dalam proses perkembangbiakan, yaitu...",
+                options: ["Fotosintesis", "Penyerbukan", "Pencernaan", "Mencair"],
+                correct: 1,
+                canvasKey: "penyerbukan"
+            },
+            {
+                topic: "Bab 2: Wujud Zat",
+                question: "Benda yang memiliki bentuk dan volume yang selalu tetap adalah ciri dari zat...",
+                options: ["Gas", "Cair", "Padat", "Uap"],
+                correct: 2,
+                canvasKey: "wujud_zat"
+            },
+            {
+                topic: "Bab 2: Wujud Zat",
+                question: "Perubahan wujud benda dari padat menjadi cair (seperti es batu di tempat terbuka) disebut...",
+                options: ["Membeku", "Mencair", "Menguap", "Mengembun"],
+                correct: 1,
+                canvasKey: "wujud_zat"
+            },
+            {
+                topic: "Bab 3: Gaya",
+                question: "Saat kamu mendorong meja hingga berpindah tempat, kamu menggunakan jenis gaya...",
+                options: ["Gaya Otot", "Gaya Magnet", "Gaya Gravitasi", "Gaya Pegas"],
+                correct: 0,
+                canvasKey: "gaya_otot"
+            },
+            {
+                topic: "Bab 3: Gaya",
+                question: "Gaya yang terjadi akibat gesekan dua permukaan benda yang saling bersentuhan adalah...",
+                options: ["Gaya Magnet", "Gaya Gesek", "Gaya Gravitasi", "Gaya Listrik"],
+                correct: 1,
+                canvasKey: "gaya_gesek"
+            },
+            {
+                topic: "Bab 3: Gaya",
+                question: "Ujung magnet yang menarik paku-paku besi memanfaatkan sifat gaya...",
+                options: ["Otot", "Gesek", "Magnet", "Pegas"],
+                correct: 2,
+                canvasKey: "gaya_magnet"
+            },
+            {
+                topic: "Bab 4: Energi",
+                question: "Makanan yang kita makan sehari-hari mengandung energi...",
+                options: ["Listrik", "Panas", "Kimia", "Bunyi"],
+                correct: 2,
+                canvasKey: "energi_transformasi"
+            },
+            {
+                topic: "Bab 4: Energi",
+                question: "Pada alat setrika listrik, terjadi perubahan energi listrik menjadi energi...",
+                options: ["Panas", "Gerak", "Cahaya", "Bunyi"],
+                correct: 0,
+                canvasKey: "energi_transformasi"
+            }
+        ];
+
+        function resetAndStartQuiz() {
+            APP_STATE.quizIndex = 0;
+            APP_STATE.score = 0;
+            APP_STATE.lives = 3;
+
+            switchScreen('screenKuis');
+            updateQuizUI();
+            speakText(`Kuis dimulai! Soal pertama.`);
+        }
+
+        function updateQuizUI() {
+            const q = QUIZ_QUESTIONS[APP_STATE.quizIndex];
+
+            // Progress text
+            document.getElementById('quizProgress').innerText = `Soal ${APP_STATE.quizIndex + 1} / ${QUIZ_QUESTIONS.length}`;
+            document.getElementById('quizTopicBadge').innerText = q.topic;
+            document.getElementById('quizQuestionText').innerText = q.question;
+
+            // Render Hearts
+            const heartsContainer = document.getElementById('livesContainer');
+            heartsContainer.innerHTML = '';
+            for(let i=0; i<3; i++) {
+                if (i < APP_STATE.lives) {
+                    heartsContainer.innerHTML += `<i class="fa-solid fa-heart text-red-500"></i>`;
+                } else {
+                    heartsContainer.innerHTML += `<i class="fa-regular fa-heart text-slate-300"></i>`;
+                }
+            }
+
+            // Draw Canvas Illustration for question
+            drawCanvasIllustration('quizCanvas', q.canvasKey);
+
+            // Render Options
+            const optsContainer = document.getElementById('quizOptionsContainer');
+            optsContainer.innerHTML = '';
+
+            const letters = ['A', 'B', 'C', 'D'];
+            q.options.forEach((optText, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "btn-bounce p-4 bg-slate-50 hover:bg-brand-50 hover:border-brand-300 border border-slate-200 rounded-2xl text-left font-semibold text-slate-700 flex items-center gap-3 transition shadow-sm";
+                btn.onclick = () => selectAnswer(idx);
+
+                btn.innerHTML = `
+                    <span class="w-8 h-8 rounded-xl bg-white border border-slate-200 text-brand-700 font-extrabold flex items-center justify-center text-sm shadow-inner">${letters[idx]}</span>
+                    <span class="text-sm sm:text-base">${optText}</span>
+                `;
+                optsContainer.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(chosenIdx) {
+            const q = QUIZ_QUESTIONS[APP_STATE.quizIndex];
+
+            if (chosenIdx === q.correct) {
+                // Correct
+                playSFX('correct');
+                APP_STATE.score += (100 / QUIZ_QUESTIONS.length);
+                speakText("Jawaban kamu benar!");
+            } else {
+                // Wrong
+                playSFX('wrong');
+                APP_STATE.lives -= 1;
+                speakText(`Jawaban belum tepat. Jawaban yang benar adalah ${q.options[q.correct]}`);
+            }
+
+            // Check Game Over
+            if (APP_STATE.lives <= 0) {
+                setTimeout(() => {
+                    playSFX('gameover');
+                    showQuizResults(false);
+                }, 800);
+                return;
+            }
+
+            // Next Question or Finish
+            APP_STATE.quizIndex += 1;
+            if (APP_STATE.quizIndex < QUIZ_QUESTIONS.length) {
+                setTimeout(() => {
+                    updateQuizUI();
+                }, 600);
+            } else {
+                setTimeout(() => {
+                    showQuizResults(true);
+                }, 600);
+            }
+        }
+
+        function showQuizResults(completed) {
+            switchScreen('screenHasil');
+
+            const finalScore = Math.round(APP_STATE.score);
+            document.getElementById('hasilScore').innerText = finalScore;
+
+            const iconContainer = document.getElementById('hasilIconContainer');
+            const titleEl = document.getElementById('hasilTitle');
+            const statusEl = document.getElementById('hasilStatus');
+            const certBtn = document.getElementById('btnCetakSertifikat');
+
+            if (finalScore >= 75 && completed) {
+                playSFX('fanfare');
+                iconContainer.className = "w-24 h-24 rounded-3xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-4xl mx-auto shadow-lg";
+                iconContainer.innerHTML = `<i class="fa-solid fa-trophy"></i>`;
+                titleEl.innerText = "Luar Biasa! Kamu Lulus!";
+                statusEl.innerText = "TUNTAS (LULUS KKM)";
+                statusEl.className = "font-heading text-xl font-bold text-emerald-600 mt-2 block";
+                certBtn.classList.remove('hidden');
+                speakText(`Selamat ${APP_STATE.studentName}! Kamu mencapai nilai ${finalScore} dan lulus KKM!`);
+            } else {
+                iconContainer.className = "w-24 h-24 rounded-3xl bg-amber-100 text-amber-600 flex items-center justify-center text-4xl mx-auto shadow-lg";
+                iconContainer.innerHTML = `<i class="fa-solid fa-rotate-right"></i>`;
+                titleEl.innerText = "Tetap Semangat Belajar!";
+                statusEl.innerText = "BELUM TUNTAS";
+                statusEl.className = "font-heading text-xl font-bold text-amber-600 mt-2 block";
+                certBtn.classList.add('hidden');
+                speakText(`Nilaimu ${finalScore}. Pelajari lagi materinya dan coba kuis sekali lagi ya!`);
+            }
+        }
+
+        /* ================= MODAL CONFIRMATION & RESET ================= */
+        function confirmLeaveQuiz() {
+            playSFX('click');
+            document.getElementById('modalConfirm').classList.remove('hidden');
+        }
+
+        function closeConfirmModal(shouldLeave) {
+            playSFX('click');
+            document.getElementById('modalConfirm').classList.add('hidden');
+            if (shouldLeave) {
+                document.getElementById('lblBtnKuisMateri').innerText = "Ulangi Kuis dari No. 1";
+                switchScreen('screenMateri');
+                renderChapterContent(APP_STATE.currentChapter);
+            }
+        }
+
+        function requestStartKuisFromMateri() {
+            playSFX('click');
+            resetAndStartQuiz();
+        }
+
+        function openCertificate() {
+            playSFX('click');
+            document.getElementById('certStudentName').innerText = APP_STATE.studentName || 'Siswa IPAS';
+            document.getElementById('certScore').innerText = Math.round(APP_STATE.score);
+
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('certDate').innerText = dateStr;
+
+            switchScreen('screenSertifikat');
+        }
+
+        /* ================= INITIALIZATION ================= */
+        window.onload = function() {
+            console.log("Petualangan IPAS Kelas 4 Loaded Successfully.");
+        };
+    </script>
+</body>
+</html>
